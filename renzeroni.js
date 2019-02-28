@@ -131,6 +131,9 @@ function shuffle(a) {
 
 function findMatchingPhotoSlideSomewhatRandomly(slides) {
 
+    console.log("input");
+    console.log(slides);
+
     var slideshow = [];
     var shittymatches = [];
     var comparisonArray = slides;
@@ -148,8 +151,8 @@ function findMatchingPhotoSlideSomewhatRandomly(slides) {
 
         // make new index
         index = randomeroni(0, comparisonArray.length - 2);
-        console.log("len" + comparisonArray.length);
-        console.log(index);
+        // console.log("len" + comparisonArray.length);
+        // console.log(index);
 
         // check if the slides have a lot of matching tags
         var match = compareTags(photoslide.tags, comparisonArray[index].tags);
