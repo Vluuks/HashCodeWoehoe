@@ -102,7 +102,7 @@ function compareTags(tags1, tags2) {
     var matchcount;
     $.each(tags1, function(n, tag) {
         if(tags2.includes(tag)) {
-            matchount++;
+            matchcount++;
         }
     });
     return matchcount;
@@ -133,25 +133,49 @@ function findMatchingPhotoSlideSomewhatRandomly(slides) {
 
     var slideshow = [];
     var shittymatches = [];
+    var comparisonArray = slides;
+    
 
-    for(i = 0; i < slides.length; i++) {
+    // keep track of the ints we already have seen
+    var alreadyseen = [];
+
+    for(i = 0, j = 0; i < slides.length; i+=2, j++) {
 
         // generate random index that is not itself
         // this will be the slide to compare against
-        var photoslide = slides[i];
-        var index = randomeroni(i + 1, slides.length - 2);
-        // console.log(index);
+        var photoslide = slides[j];
+        var index;
+
+        // make new index
+        index = randomeroni(0, comparisonArray.length - 2);
+        console.log("len" + comparisonArray.length);
+        console.log(index);
 
         // check if the slides have a lot of matching tags
-        var match = compareTags(photoslide.tags, slides[index].tags);
+        var match = compareTags(photoslide.tags, comparisonArray[index].tags);
 
+        // remove matched photo from array
         if(match > 5) {
             slideshow.push(photoslide)
-            slideshow.push(slides[index])
+            slideshow.push(comparisonArray[index])
         }
         else {
             shittymatches.push(photoslide)
-            shittymatches.push(slides[index])
+            shittymatches.push(comparisonArray[index])
+        }
+
+        // delete first element, since we remove the one at the start every time
+        // this element represents the slide we use as a basis
+        comparisonArray.shift();
+
+        // also delete the one we compare with
+        comparisonArray.splice(index, 1);
+
+
+        // if stray element, do this
+        if(slides.length < 2) {
+            slideshow.push(slides[0]);
+            break;
         }
     }
     
