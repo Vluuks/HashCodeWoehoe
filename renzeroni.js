@@ -12,7 +12,7 @@ function Slide(id, photos, tagCount, tags) {
     this.tags = tags;
 }
 
-var photosHorizontal = []; 
+var photosHorizontal = [];
 var photosVertical = [];
 var slideshow = [];
 
@@ -24,16 +24,16 @@ window.onload = function() {
 function alles() {
 
     $.get('b_lovely_landscapes.txt', function(data) {
-        console.log(data);
+        // console.log(data);
 
         var lines = (data.split("\n")).slice(1);
-        
+
         // kleiner maken
         lines = lines.slice(79900)
-        
+
         // get the lines
         $.each(lines, function(n, line) {
-            
+
             // split on space
             var parts = line.split(" ");
             var photo = new Photo(n, parts.slice(2), parts[0], parts[1]);
@@ -43,7 +43,7 @@ function alles() {
             if(parts[1] == "V") {
                 photosVertical.push(photo);
             }
-            else { 
+            else {
                 photosHorizontal.push(photo);
             }
 
@@ -60,7 +60,7 @@ function doOtherThings(){
 }
 
 
-// sort by amount of tags 
+// sort by amount of tags
 
 
 // comparetags and give similarity score
