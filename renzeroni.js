@@ -12,7 +12,8 @@ function Slide(id, photos, tagCount, tags) {
     this.tags = tags;
 }
 
-var photos = []; 
+var photosHorizontal = []; 
+var photosVertical = [];
 var slideshow = [];
 
 window.onload = function() {
@@ -37,7 +38,14 @@ function alles() {
             var parts = line.split(" ");
             var photo = new Photo(n, parts.slice(2), parts[0], parts[1]);
 
-            photos.push(photo);
+            photosAll.push(photo);
+
+            if(parts[1] == "V") {
+                photosVertical.push(photo);
+            }
+            else { 
+                photosHorizontal.push(photo);
+            }
 
         });
 
@@ -47,7 +55,8 @@ function alles() {
 }
 
 function doOtherThings(){
-    console.log(photos);
+    console.log(photosHorizontal);
+    console.log(photosVertical);
 }
 
 
@@ -71,3 +80,23 @@ function sortByNumTags(photoarray) {
     photoarray.sort((a,b) => (a.numTags > b.numTags) ? 1 : ((b.numTags > a.numTags) ? -1 : 0));
 }
 
+function makeRandomSlideshow(photosall, photos1, photos2) {
+
+
+    var slideshow = [];
+    photosall = shuffle(photosall);
+
+}
+
+
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
