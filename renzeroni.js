@@ -17,14 +17,14 @@ var photosVertical = [];
 var slideshow = [];
 
 window.onload = function() {
-    // alles();
+    alles();
 }
 
 
 function alles() {
 
     $.get('b_lovely_landscapes.txt', function(data) {
-        // console.log(data);
+        console.log(data);
 
         var lines = (data.split("\n")).slice(1);
 
