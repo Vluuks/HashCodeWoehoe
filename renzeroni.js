@@ -25,7 +25,7 @@ function alles() {
         var lines = (data.split("\n")).slice(1);
         
         // kleiner maken
-        lines.slice[lines.length/10]
+        lines.slice(lines.length/10)
         
         // get the lines
         $.each(lines, function(n, line) {
