@@ -1,12 +1,15 @@
-function Photo(id, tags, orientation, numtags) {
+function Photo(id, tags, orientation, numTags) {
     this.id = id;
     this.tags = tags;
     this.orientation = orientation;
-    this.numtags = numtags;
+    this.numTags = numTags;
 }
 
-function Slide(photos) {
+function Slide(id, photos, tagCount, tags) {
+    this.id = id;
     this.photos = photos;
+    this.tagcount = tagCount;
+    this.tags = tags;
 }
 
 var photos = []; 
@@ -25,7 +28,7 @@ function alles() {
         var lines = (data.split("\n")).slice(1);
         
         // kleiner maken
-        lines = lines.slice(lines.length/10)
+        lines = lines.slice(79900)
         
         // get the lines
         $.each(lines, function(n, line) {
@@ -46,3 +49,25 @@ function alles() {
 function doOtherThings(){
     console.log(photos);
 }
+
+
+// sort by amount of tags 
+
+
+// comparetags and give similarity score
+function compareTags(tags1, tags2) {
+
+    var matchcount;
+    $.each(tags1, function(n, tag) {
+        if(tags2.includes(tag)) {
+            matchount++;
+        }
+    });
+    return matchcount;
+
+}
+
+function sortByNumTags(photoarray) {
+    photoarray.sort((a,b) => (a.numTags > b.numTags) ? 1 : ((b.numTags > a.numTags) ? -1 : 0));
+}
+
